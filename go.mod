@@ -1,8 +1,6 @@
-module github.com/jpillora/cloud-torrent
+module xenon007/cloud-torrent
 
-go 1.23.0
-
-toolchain go1.23.1
+go 1.23.1
 
 require (
 	github.com/NYTimes/gziphandler v1.1.1

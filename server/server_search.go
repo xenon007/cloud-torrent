@@ -66,8 +66,8 @@ func normalize(input []byte) ([]byte, error) {
 	return output.Bytes(), nil
 }
 
-//see github.com/jpillora/scraper for config specification
-//cloud-torrent uses "<id>-item" handlers
+// see github.com/jpillora/scraper for config specification
+// cloud-torrent uses "<id>-item" handlers
 var defaultSearchConfig = []byte(`{
 	"zq": {
 		"name": "Zooqle",
@@ -81,21 +81,9 @@ var defaultSearchConfig = []byte(`{
 			"peers": "td:nth-child(6) .progress-bar:nth-child(2)"
 		}
 	},
-	"rbg": {
-		"name": "RARBG",
-		"url": "https://rarbg.to/torrents.php?search={{query}}&order=seeders&by=DESC&page={{page:1}}",
-		"list": "table.lista2t tr.lista2",
-		"result": {
-			"name":["td:nth-child(2) > a[title]"],
-			"torrent":["td:nth-child(2) > a[title]","@href","s~/torrent/~~","s~^~https://rarbg.to/download.php?f=file.torrent&id=~"],
-			"size": "td:nth-child(4)",
-			"seeds": "td:nth-child(5)",
-			"peers": "td:nth-child(6)"
-		}
-	},
 	"eztv": {
 		"name": "EZTV",
-		"url": "https://eztv.ag/search/{{query}}",
+		"url": "https://eztvx.to/search/{{query}}",
 		"list": "table tr.forum_header_border",
 		"result": {
 			"name": "td:nth-child(2) a",
@@ -154,6 +142,19 @@ var defaultSearchConfig = []byte(`{
 			"size": "/Size (\\d+(\\.\\d+).[KMG]iB)/",
 			"seeds": "td:nth-child(3)",
 			"peers": "td:nth-child(4)"
+		}
+	},
+	"rtr": {
+		"name": "Rutor OGR",
+		"url": "https://rutor.org/search/{{page:1}}/0/000/0/{{query}}",
+		"list": "#index > table > tbody > tr",
+		"result": {
+			"name":"td:nth-child(2) a:nth-child(3) a",
+			"path":["td:nth-child(2) a:nth-child(2)","@href"],
+			"magnet": ["td:nth-child(2) a:nth-child(2)","@href"],
+			"size": "td:nth-child(3) (\\d+(\\.\\d+).[KMGT]B)/",
+			"seeds": "td.nowrap span.green",
+			"peers": "td.nowrap span.red"
 		}
 	}
 }`)
