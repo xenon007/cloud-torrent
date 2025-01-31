@@ -11,7 +11,8 @@ import (
 	"github.com/jpillora/backoff"
 )
 
-const searchConfigURL = "https://gist.githubusercontent.com/jpillora/4d945b46b3025843b066adf3d685be6b/raw/scraper-config.json"
+// const searchConfigURL = "https://gist.githubusercontent.com/jpillora/4d945b46b3025843b066adf3d685be6b/raw/scraper-config.json"
+const searchConfigURL = "https://raw.githubusercontent.com/xenon007/cloud-torrent/refs/heads/master/static/torrent-search.json"
 
 func (s *Server) fetchSearchConfigLoop() {
 	b := backoff.Backoff{Max: 30 * time.Minute}
